@@ -74,7 +74,7 @@ packaging==23.1
 pandas==1.5.3
 pandoc==2.3
 pcodedmp==1.2.6
-pdfminer.six==20221105
+pdfminer.six==20251107
 Pillow==9.5.0
 plumbum==1.8.1
 ply==3.11
