@@ -41,10 +41,23 @@ persist_directory = os.environ.get('PERSIST_DIRECTORY')
 
 model_type = os.environ.get('MODEL_TYPE')
 model_path = os.environ.get('MODEL_PATH')
-model_n_ctx = os.environ.get('MODEL_N_CTX')
+model_n_ctx = int(os.environ.get('MODEL_N_CTX', 1000))
 llm = None
 
 from constants import CHROMA_SETTINGS
+
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify(
+        status="running",
+        message="PrivateGPT API is running",
+        endpoints={
+            "/download_model": "GET - Download the LLM model",
+            "/upload_doc": "POST - Upload a document",
+            "/ingest": "GET - Process uploaded documents",
+            "/get_answer": "POST - Ask a question"
+        }
+    )
 
 class MyElmLoader(UnstructuredEmailLoader):
     """Wrapper to fallback to text/plain when default does not work"""
